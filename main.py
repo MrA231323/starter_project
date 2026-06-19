@@ -1,0 +1,16 @@
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+from matplotlib import pyplot as plt
+import cv2
+#please opload photo
+photo=input("")
+image = cv2.imread(photo)
+image = cv2.cvtColor(image , cv2.COLOR_BGR2RGB)
+model = cv2.CascadeClassifier("model.xml")
+face = model.detectMultiScale(image)
+x = face[0][0]
+y = face[0][1]
+a = face[0][2]
+b = face[0][3]
+image = cv2.rectangle(image , (x , y) , (x+a , y+b) , (100,200,10) , 3)
+plt.imshow(image)
